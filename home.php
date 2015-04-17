@@ -11,7 +11,13 @@
     </head>
 
     <body>
-        <h2>Sistema de auditoría</h2>
+        <h2>Bienvenido 
+            <?php
+            session_start();
+            echo $_SESSION['usuario'];
+            ?>
+        </h2>
+        <h3>Sistema de auditoría</h3>
         <a href="CRUD/Estudiantes.php"><button id="btn_estudiantes" class="btn btn-primary">Estudiantes</button></a>
 
         <button id="btn_materias" class="btn btn-primary">Materias</button>
@@ -19,6 +25,7 @@
         <button id="btn_usuarios" class="btn btn-primary">Usuarios</button>
         <button id="btn_log" class="btn btn-primary">Log</button>
 
+        <a href="auditoria/cerrar_sesion.php"><button id="btn_logout" class="btn btn-default">Cerrar Sesión</button></a>
         <script src="assets/js/jquery-2.1.3.js"></script>
         <script src="assets/plugins/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
     </body>

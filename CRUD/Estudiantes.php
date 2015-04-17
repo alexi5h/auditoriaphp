@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
     <head>
@@ -9,13 +9,10 @@
     </head>
     <body>
         <header>
-            <h1>Ingresar Estudiantes</h1>
+            <h1>Gestión Estudiantes</h1>
         </header>
-        <form class='form'>
-            <div class="form-group">
-                <label for="id_estudiante" class="required">Id Estudiante</label>
-                <input name="Estudiante[id]" id="id_estudiante" type="text" maxlength="10">
-            </div>
+        <form id="formulario" class='form'>
+            <input type="hidden" name="Estudiante[id]" id="id_estudiante">
             <div class="form-group">
                 <label for="cedula" class="required">Cédula</label>
                 <input name="Estudiante[cedula]" id="cedula" type="text" maxlength="10">
@@ -36,10 +33,69 @@
                 <label for="telefono" class="required">Teléfono</label>
                 <input name="Estudiante[telefono]" id="telefono" type="text" maxlength="15">
             </div>
-            <input type="submit" class="btn btn-success">
-            <input type="reset" class="btn btn-danger">
         </form>
+        <button id="btn_ingresar" class="btn btn-success">Ingresar</button>
+        <br>
+        <br>
+        <div class="row col-lg-12">
+            <table class="table table-bordered" id="tabla" width="100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Cedula</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <?php
+                    require_once("../auditoria/conexion.php");
+                    $con = conectar();
+                    $sql = "select * from tab_estudiantes";
+                    $q = mysql_query($sql, $con) or die("problemas al consultar");
+                    ?>
+                    <?php
+                    while ($dato = mysql_fetch_array($q)) {
+                        ?>
+                        <tr class="odd gradeX">
+                            <td><?php echo $dato['idtab_estudiantes']; ?></td>
+                            <td><?php echo $dato['cedula']; ?></td>
+                            <td><?php echo $dato['nombre']; ?></td>
+                            <td><?php echo $dato['apellido']; ?></td>
+                            <td><?php echo $dato['direccion']; ?></td>
+                            <td><?php echo $dato['telefono']; ?></td>
+                            <td>
+                                <input type="button" name ="editar" class ="btn btn-sm btn-primary"  
+                                       onclick ="editar('<?php echo $dato['idtab_estudiantes'] ?>', '<?php echo $dato['cedula'] ?>', '<?php echo $dato['nombre'] ?>',
+                                                       '<?php echo $dato['apellido'] ?> ', '<?php echo $dato['direccion'] ?>', '<?php echo $dato['telefono'] ?>');" 
+                                       value="Editar" style="cursor:pointer"/>
+                                <input class="btn btn-sm btn-danger" type="button"  style="cursor:pointer" value="Eliminar" onclick="eliminar(<?php echo $dato['idtab_estudiantes'] ?>)"/>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
         <script src="../assets/js/jquery-2.1.3.js"></script>
         <script src="../assets/plugins/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+        <script src="../assets/js/estudiantes.js"></script>
     </body>
 </html>
