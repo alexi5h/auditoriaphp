@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label for="apellido" class="required">Apeliido</label>
-                <input name="Estudiante[apellido]" id="id_estudiante" type="text" maxlength="45">
+                <input name="Estudiante[apellido]" id="apellido" type="text" maxlength="45">
             </div>
             <div class="form-group">
                 <label for="direccion" class="required">Dirección</label>
