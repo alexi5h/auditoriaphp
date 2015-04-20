@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<?php include '../auditoria/bloqueoSeguridad.php'; ?>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -35,6 +35,7 @@
             </div>
         </form>
         <button id="btn_ingresar" class="btn btn-success">Ingresar</button>
+        <button id="btn_nuevo" class="btn btn-info hidden">Nuevo</button>
         <br>
         <br>
         <div class="row col-lg-12">
@@ -50,7 +51,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody >
+                <tbody>
                     <?php
                     require_once("../auditoria/conexion.php");
                     $con = conectar();
@@ -60,7 +61,7 @@
                     <?php
                     while ($dato = mysql_fetch_array($q)) {
                         ?>
-                        <tr class="odd gradeX">
+                        <tr>
                             <td><?php echo $dato['idtab_estudiantes']; ?></td>
                             <td><?php echo $dato['cedula']; ?></td>
                             <td><?php echo $dato['nombre']; ?></td>

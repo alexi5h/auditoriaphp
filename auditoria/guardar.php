@@ -11,15 +11,18 @@ if ($_POST['Estudiante']) {
     $apellido = $_POST['Estudiante']['apellido'];
     $direccion = $_POST['Estudiante']['direccion'];
     $telefono = $_POST['Estudiante']['telefono'];
-    $sql2 = 'insert into tab_estudiantes(cedula,nombre,apellido,direccion,telefono) values("' . $cedula . '","' . $nombre . '","' . $apellido . '","' . $direccion . '","' . $telefono . '")';
-    $sql3 = 'insert into tab_auditoria(ip,usuario,trama,tiempo) values("' . ObtenerIP() . '","' . $usuario . '","insert,tab_estudiante","00:00")';
+    if ($id) {
+        $sql2 = 'update tab_estudiantes set cedula="' . $cedula . '",nombre="' . $nombre . '",apellido="' . $apellido . '",direccion="' . $direccion . '",telefono="' . $telefono . '" where idtab_estudiantes="' . $id . '"';
+        $sql3 = 'insert into tab_auditoria(ip,usuario,trama,tiempo) values("' . ObtenerIP() . '","' . $usuario . '","update,tab_estudiante","00:00")';
+    } else {
+        $sql2 = 'insert into tab_estudiantes(cedula,nombre,apellido,direccion,telefono) values("' . $cedula . '","' . $nombre . '","' . $apellido . '","' . $direccion . '","' . $telefono . '")';
+        $sql3 = 'insert into tab_auditoria(ip,usuario,trama,tiempo) values("' . ObtenerIP() . '","' . $usuario . '","insert,tab_estudiante","00:00")';
+    }
 }
 $query = mysql_query($sql2, $conexion);
+$id_new = mysql_insert_id();
 $query2 = mysql_query($sql3, $conexion);
-echo "agregado correctamente";
-
-
-
+echo json_encode(array($_POST['Estudiante'], $id_new));
 
 function getRealIP() {
     if (!empty($_SERVER['HTTP_CLIENT_IP']))
