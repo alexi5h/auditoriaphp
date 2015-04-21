@@ -18,15 +18,13 @@
         <input type ="text" name="Nota[materia]" id="nota" maxlength="5"></div>
     <div class="form-group"><label class="requiered" for="materia">Materias</label><select>
         <optgroup id="materia">
-        <option selected value="0"> Selecionar Materia </option>
-        <option value="1" >Programacion</option>
-        <option value="2">Administracion de Sistemas</option>
-        <option value="3">Automatas</option>
+        <option value="Programacion" >Programacion</option>
+        <option value="Administracion de Sistemas">Administracion de Sistemas</option>
+        <option value="Automatas">Automatas</option>
     </optgroup></select></div>
-    <div><input type="submit" class="btn btn-success"></div>
-    <div><input type="reset" class="btn btn-danger"></div>
 
 </form>
+
 <script src="../assets/js/jquery-2.1.3.js"></script>
 <script src="../assets/plugins/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
 </body>

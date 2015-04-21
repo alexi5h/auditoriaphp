@@ -4,25 +4,46 @@ require_once 'conexion.php';
 $conexion = conectar();
 session_start();
 $usuario = $_SESSION['usuario'];
-if ($_POST['Estudiante']) {
+if (isset($_POST['Estudiante'])) {
     $id = $_POST['Estudiante']['id'];
     $cedula = $_POST['Estudiante']['cedula'];
     $nombre = $_POST['Estudiante']['nombre'];
     $apellido = $_POST['Estudiante']['apellido'];
     $direccion = $_POST['Estudiante']['direccion'];
     $telefono = $_POST['Estudiante']['telefono'];
+
+$trama = $cedula.','.$nombre.','.$apellido.','.$direccion.','.$telefono;
     if ($id) {
         $sql2 = 'update tab_estudiantes set cedula="' . $cedula . '",nombre="' . $nombre . '",apellido="' . $apellido . '",direccion="' . $direccion . '",telefono="' . $telefono . '" where idtab_estudiantes="' . $id . '"';
-        $sql3 = 'insert into tab_auditoria(ip,usuario,trama,tiempo) values("' . ObtenerIP() . '","' . $usuario . '","update,tab_estudiante","00:00")';
+        $sql3 = 'insert into tab_auditoria(ip,usuario,trama,tiempo) values("' . ObtenerIP() . '","' . $usuario . '","tab_estudiante,update('.$trama.')","'.date('H:i:s').'")';
     } else {
         $sql2 = 'insert into tab_estudiantes(cedula,nombre,apellido,direccion,telefono) values("' . $cedula . '","' . $nombre . '","' . $apellido . '","' . $direccion . '","' . $telefono . '")';
-        $sql3 = 'insert into tab_auditoria(ip,usuario,trama,tiempo) values("' . ObtenerIP() . '","' . $usuario . '","insert,tab_estudiante","00:00")';
+        $sql3 = 'insert into tab_auditoria(ip,usuario,trama,tiempo) values("' . ObtenerIP() . '","' . $usuario . '","tab_estudiante,insert('.$trama.')","'.date('H:i:s').'")';
     }
+    $query = mysql_query($sql2, $conexion);
+    $id_new = mysql_insert_id();
+    $query2 = mysql_query($sql3, $conexion);
+    echo json_encode(array($_POST['Estudiante'], $id_new));
 }
-$query = mysql_query($sql2, $conexion);
-$id_new = mysql_insert_id();
-$query2 = mysql_query($sql3, $conexion);
-echo json_encode(array($_POST['Estudiante'], $id_new));
+else if (isset($_POST['Materias'])) {
+    $id = $_POST['Materias']['id'];
+    $materia = $_POST['Materias']['materia'];
+
+    if ($id) {
+        $sql2 = 'update tab_materias set materia="' . $materia .  '" where idtab_materias="' . $id . '"';
+        $sql3 = 'insert into tab_auditoria(ip,usuario,trama,tiempo) values("' . ObtenerIP() . '","' . $usuario . '","tab_materias,update('.$materia.')","'.date('H:i:s').'")';
+    } else {
+        $sql2 = 'insert into tab_materias(materia) values("' .$materia .'")';
+        $sql3 = 'insert into tab_auditoria(ip,usuario,trama,tiempo) values("' . ObtenerIP() . '","' . $usuario . '","tab_materias,insert('.$materia.')","'.date('H:i:s').'")';
+    }
+    $query = mysql_query($sql2, $conexion);
+    $id_new = mysql_insert_id();
+    $query2 = mysql_query($sql3, $conexion);
+    echo json_encode(array($_POST['Materias'], $id_new));
+}
+
+
+
 
 function getRealIP() {
     if (!empty($_SERVER['HTTP_CLIENT_IP']))

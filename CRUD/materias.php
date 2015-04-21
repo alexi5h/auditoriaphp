@@ -11,16 +11,57 @@
 <header>
     <h1>Ingresar Materias</h1>
 </header>
-<form class='form' >
+<form id="formulario" class='form' >
     <div class="form-group"><label for="id_materia" class="required">Id Materia</label>
-        <input name="Materia[id]" id="id_materia" type="text" maxlength="50"></div>
+        <input name="Materias[id]" id="id_materia" type="text" maxlength="50"></div>
     <div class="form-group"><label for="materia_nombre" class="required">Nombre Materia</label>
-        <input name="Materia[nombre]" id="materia_nombre" type ="text"  maxlength="50"></div>
-    <div><input type="submit" class="btn btn-success"></div>
-    <div><input type="reset" class="btn btn-danger"></div>
+        <input name="Materias[materia]" id="materia_nombre" type ="text"  maxlength="50"></div>
+</form><button id="btn_ingresar" class="btn btn-success">Ingresar</button>
+<br>
+<br>
+<div class="row col-lg-12">
+    <table class="table table-bordered" id="tabla" width="100%">
+        <thead>
+        <tr>
+            <th>Id_materia</th>
+            <th>Materia</th>
+            </tr>
+        </thead>
+        <tbody >
+        <?php
+        require_once("../auditoria/conexion.php");
+        $con = conectar();
+        $sql = "select * from tab_materias";
+        $q = mysql_query($sql, $con) or die("problemas al consultar");
+        ?>
+        <?php
+        while ($dato = mysql_fetch_array($q)) {
+            ?>
+        <tr class="odd gradeX">
+            <td><?php echo $dato['idtab_materias']; ?></td>
+            <td><?php echo $dato['materia']; ?></td>
+            <td>
+                <input type="button" name ="editar" class ="btn btn-sm btn-primary"
+                       onclick ="editar('<?php echo $dato['idtab_materias'] ?>', '<?php echo $dato['materia'] ?>');"
+                       value="Editar" style="cursor:pointer"/>
+                <input class="btn btn-sm btn-danger" type="button"  style="cursor:pointer" value="Eliminar"
+                       onclick="eliminar(<?php echo $dato['idtab_materias'] ?>)"/>
+            </td>
+        </tr>
+            <?php
+        }
+        ?>
 
-</form>
+        </tbody>
+        <tfoot>
+        </tfoot>
+    </table>
+</div>
+
+
+
 <script src="../assets/js/jquery-2.1.3.js"></script>
 <script src="../assets/plugins/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+<script src="../assets/js/materias.js"></script>
 </body>
 </html>
