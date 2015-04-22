@@ -73,7 +73,7 @@
                                        onclick ="editar('<?php echo $dato['idtab_estudiantes'] ?>', '<?php echo $dato['cedula'] ?>', '<?php echo $dato['nombre'] ?>',
                                                        '<?php echo $dato['apellido'] ?> ', '<?php echo $dato['direccion'] ?>', '<?php echo $dato['telefono'] ?>');" 
                                        value="Editar" style="cursor:pointer"/>
-                                <input class="btn btn-sm btn-danger" type="button"  style="cursor:pointer" value="Eliminar" onclick="eliminar(<?php echo $dato['idtab_estudiantes'] ?>)"/>
+                                <input id="ident<?php echo $dato['idtab_estudiantes'] ?>" class="btn btn-sm btn-danger" type="button"  style="cursor:pointer" value="Eliminar" onclick="eliminar(<?php echo $dato['idtab_estudiantes'] ?>)"/>
                             </td>
                         </tr>
                         <?php
@@ -94,6 +94,8 @@
                 </tfoot>
             </table>
         </div>
+        
+        <a href="../home.php" class="btn btn-default">Regresar</a>
 
         <script src="../assets/js/jquery-2.1.3.js"></script>
         <script src="../assets/plugins/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>

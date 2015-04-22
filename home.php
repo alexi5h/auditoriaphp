@@ -19,11 +19,10 @@
         </h2>
         <h3>Sistema de auditoría</h3>
         <a href="CRUD/Estudiantes.php"><button id="btn_estudiantes" class="btn btn-primary">Estudiantes</button></a>
-
-        <button id="btn_materias" class="btn btn-primary">Materias</button>
-        <button id="btn_notas" class="btn btn-primary">Notas</button>
-        <button id="btn_usuarios" class="btn btn-primary">Usuarios</button>
-        <button id="btn_log" class="btn btn-primary">Log</button>
+        <a href="CRUD/materias.php"><button id="btn_materias" class="btn btn-primary">Materias</button></a>
+        <a href="CRUD/Notas.php"><button id="btn_notas" class="btn btn-primary">Notas</button></a>
+        <a href="CRUD/Usuarios.php"><button id="btn_usuarios" class="btn btn-primary">Usuarios</button></a>
+        <!--<a href="CRUD/L"><button id="btn_log" class="btn btn-primary">Log</button></a>-->
 
         <a href="auditoria/cerrar_sesion.php"><button id="btn_logout" class="btn btn-default">Cerrar Sesión</button></a>
         <script src="assets/js/jquery-2.1.3.js"></script>
