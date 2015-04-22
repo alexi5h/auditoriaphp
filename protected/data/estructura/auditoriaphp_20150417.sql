@@ -3,6 +3,8 @@
 # Generator: MySQL-Front 5.3  (Build 4.133)
 
 /*!40101 SET NAMES utf8 */;
+CREATE DATABASE IF NOT EXISTS `auditoriaphp` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `auditoriaphp`;
 
 #
 # Structure for table "tab_auditoria"
@@ -15,7 +17,7 @@ CREATE TABLE `tab_auditoria` (
   `trama` text,
   `tiempo` time DEFAULT NULL,
   PRIMARY KEY (`idtab_auditoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "tab_estudiantes"
@@ -29,7 +31,7 @@ CREATE TABLE `tab_estudiantes` (
   `direccion` varchar(45) DEFAULT NULL,
   `telefono` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`idtab_estudiantes`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "tab_materias"
@@ -39,7 +41,7 @@ CREATE TABLE `tab_materias` (
   `idtab_materias` int(11) NOT NULL AUTO_INCREMENT,
   `materia` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idtab_materias`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "tab_notas"
@@ -67,4 +69,6 @@ CREATE TABLE `tab_usuarios` (
   `password` varchar(45) DEFAULT NULL,
   `tipo_usuario` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idtab_usuarios`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert into tab_usuarios (nombre_usuario,password,tipo_usuario) values('admin','admin','ADMINISTRADOR');

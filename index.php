@@ -13,7 +13,7 @@
     <body id="login">
         <img id="bg" src="assets/img/Download-Free-Website-Abstract-Wallpaper.jpg" alt="Fondo" />
         <form class="form" id="logon-form" action="auditoria/after_login.php" method="post">
-            <h1>Iniciar Sesión</h1>
+            <h1>Iniciar Sesi�n</h1>
             <div class="inset">
                 <div class="form-group">
                     <label for="username" class="required">Nombre de Usuario<span class="required">*</span></label>
