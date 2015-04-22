@@ -1,10 +1,3 @@
-/**
- * Created with JetBrains PhpStorm.
- * User: Cristian
- * Date: 21/04/15
- * Time: 06:49 PM
- * To change this template use File | Settings | File Templates.
- */
 $(function () {
     $('#btn_ingresar').on('click', function () {
         var da = $('#formulario').serialize();
@@ -25,25 +18,21 @@ $(function () {
 
     $('#btn_nuevo').on('click', function () {
         $('#formulario').trigger('reset');
-        $('#id_estudiante').val('');
+        $('#id_usuario').val('');
         $('#btn_ingresar').html('Ingresar');
         $('#btn_nuevo').addClass('hidden');
     });
 });
 
-function editar(ide, t, m, p, pr, tlf) {
-    var idq = ide + "";
-    var te = t + "";
-    var ma = m + "";
-    var po = p + "";
-    var pre = pr + "";
-    var tel = tlf + "";
-    $('#id_estudiante').val(idq);
-    $('#cedula').val(te);
-    $('#nombre').val(ma);
-    $('#apellido').val(po);
-    $('#direccion').val(pre);
-    $('#telefono').val(tel);
+function editar(id, user, pass, tpass) {
+    var idq = id + "";
+    var te = user + "";
+    var ma =pass + "";
+    var po = tpass + "";
+    $('#id_usuario').val(idq);
+    $('#nombre').val(te);
+    $('#password').val(ma);
+    $('#tipo_usuario').val(po);
     $('#btn_ingresar').html('Guardar');
     $('#btn_nuevo').removeClass('hidden');
 }
@@ -80,7 +69,7 @@ function updateTabla(data, tipo) {
         });
         tds += '<td>\n\
             <input type="button" name ="editar" class ="btn btn-sm btn-primary" \n\
-            onclick ="editar(\'' + id_afectado + '\',\'' + datos.cedula + '\',\'' + datos.nombre + '\',\'' + datos.apellido + '\',\'' + datos.direccion + '\',\'' + datos.telefono + '\');" \n\
+            onclick ="editar(\'' + id_afectado + '\',\'' + datos.nombre + '\',\'' + datos.password + '\',\'' + datos.tipo_usuario + '\');" \n\
             value="Editar" style="cursor:pointer"/>\n\
             <input class="btn btn-sm btn-danger" type="button"  style="cursor:pointer" value="Eliminar" onclick="eliminar(\'' + id_afectado + '\')"/>\n\
             </td>';

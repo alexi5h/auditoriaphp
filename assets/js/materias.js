@@ -1,16 +1,10 @@
-/**
- * Created with JetBrains PhpStorm.
- * User: Cristian
- * Date: 19/04/15
- * Time: 08:54 PM
- * To change this template use File | Settings | File Templates.
- */
 $(function () {
     $('#btn_ingresar').on('click', function () {
         var da = $('#formulario').serialize();
         $.ajax({
             url: "../auditoria/guardar.php",
             data: da,
+            dataType: 'json',
             type: "POST",
             success: function (data) {
                 if (data) {
@@ -31,9 +25,11 @@ $(function () {
 
 function editar(ide, nom) {
     var idq = ide + "";
-    var nom = nom + "";
+    var nomb= nom + "";
     $('#id_materia').val(idq);
-    $('#nombre').val(nom);
+    $('#nombre').val(nomb);
+    $('#btn_ingresar').html('Guardar');
+    $('#btn_nuevo').removeClass('hidden');
 }
 
 function eliminar(ide) {
@@ -67,7 +63,7 @@ function updateTabla(data, tipo) {
         });
         tds += '<td>\n\
             <input type="button" name ="editar" class ="btn btn-sm btn-primary" \n\
-            onclick ="editar(\'' + id_afectado + '\',\'' + datos.materia +  '\');" \n\
+            onclick ="editar(\'' + id_afectado + '\',\'' + datos.materia + '\');" \n\
             value="Editar" style="cursor:pointer"/>\n\
             <input class="btn btn-sm btn-danger" type="button"  style="cursor:pointer" value="Eliminar" onclick="eliminar(\'' + id_afectado + '\')"/>\n\
             </td>';
