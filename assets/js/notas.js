@@ -5,24 +5,31 @@ $(function () {
             url: "../auditoria/guardar.php",
             data: da,
             type: "POST",
-            success:
-                function (respuesta) {
-                    alert(respuesta);
-//                                location.reload(true);
+            success: function (data) {
+                if (data) {
+                    updateTabla(data, 'guardar');
+                    alert('Guardado correctamente!');
+                    $('#btn_nuevo').click();
                 }
+            }
         });
     });
+    $('#btn_nuevo').on('click', function () {
+        $('#formulario').trigger('reset');
+        $('#id_nota').val('');
+        $('#btn_ingresar').html('Ingresar');
+        $('#btn_nuevo').addClass('hidden');
+    });
+
 });
 
-function editar(ide, t, m, p, pr, tlf) {
-    var idq = ide + "";
-    var te = t + "";
-    var ma = m + "";
-    var po = p + "";
-    var pre = pr + "";
-    var tel = tlf + "";
-    $('#id_estudiante').val(idq);
-    $('#cedula').val(te);
+function editar(id, no, ide, idm) {
+    var idn = id + "";
+    var nno = no + "";
+    var iden = ide + "";
+    var idemn=idm + "";
+    $('#id_nota').val(idn);
+    $('#nota').val(nno);
     $('#nombre').val(ma);
     $('#apellido').val(po);
     $('#direccion').val(pre);
@@ -37,10 +44,10 @@ function eliminar(ide) {
             data: id,
             type: "POST",
             success:
-                function (respuesta) {
-                    alert(respuesta);
+                    function (respuesta) {
+                        alert(respuesta);
 //                        location.reload(true);
-                }
+                    }
         })
     }
 }
