@@ -48,14 +48,12 @@ else if (isset($_POST['Usuarios'])) {
     $password =$_POST['Usuarios']['password'];
     $tipo_usuario=$_POST['Usuarios']['tipo_usuario'];
     $cadena = $nombr_usuario .','.$password .','.$tipo_usuario;
-    var_dump($_POST['Usuarios']);
-    die();
     if ($id) {
         $sql2 = 'update tab_usuarios set nombre_usuario="' .$nombr_usuario . '",password ="'.$password.'" ,tipo_usuario="'.$tipo_usuario.'" where idtab_materias="' . $id . '"';
-        $sql3 = 'insert into tab_auditoria(ip,usuario,trama,tiempo) values("' . ObtenerIP() . '","' . $usuario . '","tab_materias,update('.$cadena.')","'.date('H:i:s').'")';
+        $sql3 = 'insert into tab_auditoria(ip,usuario,trama,tiempo) values("' . ObtenerIP() . '","' . $usuario . '","tab_usuarios,update('.$cadena.')","'.date('H:i:s').'")';
     } else {
         $sql2 = 'insert into tab_usuarios(nombre_usuario,password,tipo_usuario) values("' .$nombr_usuario .'","'.$password.'","'.$tipo_usuario.'" )';
-        $sql3 = 'insert into tab_auditoria(ip,usuario,trama,tiempo) values("' . ObtenerIP() . '","' . $usuario . '","tab_materias,insert('.$cadena.')","'.date('H:i:s').'")';
+        $sql3 = 'insert into tab_auditoria(ip,usuario,trama,tiempo) values("' . ObtenerIP() . '","' . $usuario . '","tab_usuarios,insert('.$cadena.')","'.date('H:i:s').'")';
     }
     $query = mysql_query($sql2, $conexion);
     $id_new = mysql_insert_id();

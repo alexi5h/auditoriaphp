@@ -12,12 +12,11 @@
 <header>
     <h1>Ingresar Usuario</h1>
 </header>
-<form id="Formulario" class='form' >
-    <div class="form-group" ><label for="id_usuarios" class="required">Id Usuario</label>
-        <input type ="text" name="Usuarios[id]"  id="id_usuarios" maxlength="10"></div>
+<form id="formulario" class='form' >
+    <input type="hidden" name="Usuarios[id]" id="id_estudiante">
     <div class="form-group"><label for="nombre" class="required">Nombre</label>
         <input type ="text" name="Usuarios[nombre_usuario]" id="nombre"   maxlength="50"></div>
-    <div class="form-group"><label for="contraseña">Contrase&#241;a</label>
+    <div class="form-group"><label for="contraseña">Contraseña</label>
         <input type ="password" name="Usuarios[password]" id="contraseña"   maxlength="50"></div>
     <div class="form-group"><label for="tipo_usuario" class="required">Tipo Usuario</label>
         <input type ="text" name="Usuarios[tipo_usuario]" id="tipo_usuario"   maxlength="15"></div>
