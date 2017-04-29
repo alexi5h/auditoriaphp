@@ -20,10 +20,10 @@
                     require_once("../auditoria/conexion.php");
                     $con = conectar();
                     $sql = "select * from tab_estudiantes";
-                    $q = mysql_query($sql, $con) or die("problemas al consultar");
+                    $q = mysqli_query($con, $sql) or die("problemas al consultar");
                     ?>
                     <?php
-                    while ($dato = mysql_fetch_array($q)) {
+                    while ($dato = mysqli_fetch_array($q)) {
                         ?>
                         <option value="<?php echo $dato['idtab_estudiantes']; ?>"><?php echo $dato['nombre'] . ' ' . $dato['apellido']; ?></option>
                         <?php
@@ -36,10 +36,10 @@
                 <select id="materias" name="Nota[materias]">
                     <?php
                     $sql2 = "select * from tab_materias";
-                    $q2 = mysql_query($sql2, $con) or die("problemas al consultar");
+                    $q2 = mysqli_query($con, $sql2) or die("problemas al consultar");
                     ?>
                     <?php
-                    while ($dato2 = mysql_fetch_array($q2)) {
+                    while ($dato2 = mysqli_fetch_array($q2)) {
                         ?>
                         <option value="<?php echo $dato2['idtab_materias']; ?>"><?php echo $dato2['materia']; ?></option>
                         <?php
@@ -73,10 +73,10 @@
                             from tab_notas n
                             inner join tab_estudiantes es on es.idtab_estudiantes = n.tab_estudiantes_idtab_estudiantes
                             inner join tab_materias mat on mat.idtab_materias = n.tab_materias_idtab_materias';
-                    $q3 = mysql_query($sql3, $con) or die("problemas al consultar");
+                    $q3 = mysqli_query($con, $sql3) or die("problemas al consultar");
                     ?>
                     <?php
-                    while ($dato3 = mysql_fetch_array($q3)) {
+                    while ($dato3 = mysqli_fetch_array($q3)) {
                         ?>
                         <tr>
                             <td><?php echo $dato3['id']; ?></td>
@@ -86,7 +86,7 @@
                             <td>
                                 <input type="button" name ="editar" class ="btn btn-sm btn-primary"  
                                        onclick ="editar('<?php echo $dato3['id'] ?>', '<?php echo $dato3['id_est'] ?>', '<?php echo $dato3['id_mat'] ?>',
-                                                           '<?php echo $dato3['nota'] ?>');" 
+                                                       '<?php echo $dato3['nota'] ?>');" 
                                        value="Editar" style="cursor:pointer"/>
                                 <input id="ident<?php echo $dato3['id'] ?>" class="btn btn-sm btn-danger" type="button"  style="cursor:pointer" value="Eliminar" onclick="eliminar(<?php echo $dato3['id'] ?>)"/>
                             </td>

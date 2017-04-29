@@ -7,10 +7,12 @@ $(function () {
             dataType: 'json',
             type: "POST",
             success: function (data) {
-                if (data) {
+                if (data.length > 0) {
                     updateTabla(data, 'guardar');
                     alert('Guardado correctamente!');
                     $('#btn_nuevo').click();
+                } else {
+                    alert('Llene los campos requeridos!!');
                 }
             }
         });

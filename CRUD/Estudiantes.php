@@ -56,10 +56,10 @@
                     require_once("../auditoria/conexion.php");
                     $con = conectar();
                     $sql = "select * from tab_estudiantes";
-                    $q = mysql_query($sql, $con) or die("problemas al consultar");
+                    $q = mysqli_query($con, $sql) or die("problemas al consultar");
                     ?>
                     <?php
-                    while ($dato = mysql_fetch_array($q)) {
+                    while ($dato = mysqli_fetch_array($q)) {
                         ?>
                         <tr>
                             <td><?php echo $dato['idtab_estudiantes']; ?></td>
@@ -94,7 +94,7 @@
                 </tfoot>
             </table>
         </div>
-        
+
         <a href="../home.php" class="btn btn-default">Regresar</a>
 
         <script src="../assets/js/jquery-2.1.3.js"></script>

@@ -33,10 +33,10 @@
                     require_once("../auditoria/conexion.php");
                     $con = conectar();
                     $sql = "select * from tab_materias";
-                    $q = mysql_query($sql, $con) or die("problemas al consultar");
+                    $q = mysqli_query($con,$sql) or die("problemas al consultar");
                     ?>
                     <?php
-                    while ($dato = mysql_fetch_array($q)) {
+                    while ($dato = mysqli_fetch_array($q)) {
                         ?>
                         <tr class="odd gradeX">
                             <td><?php echo $dato['idtab_materias']; ?></td>

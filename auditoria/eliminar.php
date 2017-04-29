@@ -9,8 +9,8 @@ if (isset($_POST['Estudiante'])) {
     $sql2 = 'delete from tab_estudiantes where idtab_estudiantes=' . $id . '';
     $sql3 = 'insert into tab_auditoria(ip,usuario,trama,tiempo) values("' . ObtenerIP() . '","' . $usuario . '","tab_estudiante,delete(' . $id . ')","' . date('H:i:s') . '")';
 
-    $query = mysql_query($sql2, $conexion);
-    $query2 = mysql_query($sql3, $conexion);
+    $query = mysqli_query($conexion,$sql2);
+    $query2 = mysqli_query($conexion,$sql3);
     echo json_encode(array($_POST['Estudiante'], $id));
     
 } else if (isset($_POST['Materias'])) {
@@ -18,8 +18,8 @@ if (isset($_POST['Estudiante'])) {
     $sql2 = 'delete from tab_materias where idtab_materias=' . $id . '';
     $sql3 = 'insert into tab_auditoria(ip,usuario,trama,tiempo) values("' . ObtenerIP() . '","' . $usuario . '","tab_materia,delete(' . $id . ')","' . date('H:i:s') . '")';
 
-    $query = mysql_query($sql2, $conexion);
-    $query2 = mysql_query($sql3, $conexion);
+    $query = mysqli_query($conexion,$sql2);
+    $query2 = mysqli_query($conexion,$sql3);
     echo json_encode(array($_POST['Materias'], $id));
     
 } else if (isset($_POST['Nota'])) {
@@ -27,8 +27,8 @@ if (isset($_POST['Estudiante'])) {
     $sql2 = 'delete from tab_notas where idtab_notas=' . $id . '';
     $sql3 = 'insert into tab_auditoria(ip,usuario,trama,tiempo) values("' . ObtenerIP() . '","' . $usuario . '","tab_notas,delete(' . $id . ')","' . date('H:i:s') . '")';
 
-    $query = mysql_query($sql2, $conexion);
-    $query2 = mysql_query($sql3, $conexion);
+    $query = mysqli_query($conexion,$sql2);
+    $query2 = mysqli_query($conexion,$sql3);
     echo json_encode(array($_POST['Nota'], $id));
 }
 

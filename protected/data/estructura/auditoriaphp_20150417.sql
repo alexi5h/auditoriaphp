@@ -3,8 +3,6 @@
 # Generator: MySQL-Front 5.3  (Build 4.133)
 
 /*!40101 SET NAMES utf8 */;
-CREATE DATABASE IF NOT EXISTS `auditoriaphp` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `auditoriaphp`;
 
 #
 # Structure for table "tab_auditoria"
